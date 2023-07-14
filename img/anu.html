@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="mb-3">
+      <label for="gambar" class="form-label">Pilih Foto</label>
+      <input type="file" class="form-control-file" id="gambar" name="gambar" onchange="previewImage(event)" />
+    </div>
+
+    <img id="preview" src="#" alt="Preview Gambar" width="200px" style="display: none" />
+
+    <script>
+      function previewImage(event) {
+        var input = event.target;
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+            document.getElementById('preview').setAttribute('src', e.target.result);
+            document.getElementById('preview').style.display = 'block';
+          };
+
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+    </script>
+  </body>
+</html>
